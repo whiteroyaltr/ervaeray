@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+/* =============================================
+   SWEET THEME — CSS CUSTOM PROPERTIES
+   ============================================= */
+:root {
+  /* Color palette */
+  --color-bg-from: #FFF5F7;
+  --color-bg-to: #FFE4EC;
+  --color-pink: #FF8FAB;
+  --color-pink-deep: #FF6B81;
+  --color-lavender: #C8A2C8;
+  --color-gold: #FFD580;
+  --color-mint: #B5EAD7;
+  --color-mint-deep: #7FD8BE;
+  --color-text: #4A3F35;
+  --color-text-soft: #7A6B5D;
+  --color-white-glass: rgba(255, 255, 255, 0.75);
+  --color-white-glass-hover: rgba(255, 255, 255, 0.9);
+
+  /* Card pastels (cycling for variety) */
+  --card-color-1: #FFD6E0;
+  --card-color-2: #E0D6FF;
+  --card-color-3: #D6EEFF;
+  --card-color-4: #D6FFE8;
+  --card-color-5: #FFF3D6;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 30px rgba(255, 107, 129, 0.12);
+  --shadow-card: 0 8px 40px rgba(200, 162, 200, 0.18);
+  --shadow-hover: 0 16px 60px rgba(255, 107, 129, 0.22);
+
+  /* Radius */
+  --radius-card: 24px;
+  --radius-btn: 50px;
+}
+
+/* =============================================
+   BASE STYLES
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: linear-gradient(135deg, var(--color-bg-from) 0%, var(--color-bg-to) 100%);
+  min-height: 100vh;
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* =============================================
+   GLASSMORPHISM CARD
+   ============================================= */
+.glass-card {
+  background: var(--color-white-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.glass-card:hover {
+  background: var(--color-white-glass-hover);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+/* =============================================
+   SWEET BUTTON
+   ============================================= */
+.btn-sweet {
+  background: linear-gradient(135deg, var(--color-pink), var(--color-pink-deep));
+  color: white;
+  border: none;
+  border-radius: var(--radius-btn);
+  padding: 14px 32px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 107, 129, 0.4);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-sweet:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 30px rgba(255, 107, 129, 0.5);
+}
+
+.btn-sweet:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* =============================================
+   AMBIENT BACKGROUND FLOATERS
+   ============================================= */
+.ambient-floater {
+  position: fixed;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(0deg);
+  }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% {
+    opacity: 0;
+    transform: translateY(-20vh) rotate(360deg);
+  }
+}
+
+/* =============================================
+   PAGE WRAPPER
+   ============================================= */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  padding: 0 1rem;
+}
+
+/* =============================================
+   SECTION HEADERS
+   ============================================= */
+.section-title {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-pink-deep), var(--color-lavender));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  color: var(--color-text-soft);
+  text-align: center;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+/* =============================================
+   SCROLL REVEAL
+   ============================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================================
+   DIGIT FLIP ANIMATION (counter)
+   ============================================= */
+@keyframes digitFlip {
+  0% { transform: rotateX(0deg); }
+  50% { transform: rotateX(-90deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+.digit-flip {
+  animation: digitFlip 0.3s ease-in-out;
+}
+
+/* =============================================
+   CARD STACK (love reasons)
+   ============================================= */
+.card-stack {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .card-stack {
+    width: 280px;
+    height: 380px;
+  }
+}
+
+/* =============================================
+   VINYL RECORD (music player)
+   ============================================= */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.vinyl-spin {
+  animation: spin 3s linear infinite;
+}
+
+.vinyl-paused {
+  animation-play-state: paused;
+}
+
+/* =============================================
+   EQUALIZER BARS
+   ============================================= */
+@keyframes eqBounce {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+.eq-bar {
+  animation: eqBounce 0.8s ease-in-out infinite;
+}
+
+/* =============================================
+   PROGRESS BAR
+   ============================================= */
+.progress-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(200, 162, 200, 0.25);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-pink), var(--color-lavender));
+  transition: width 0.1s linear;
+}
+
+/* =============================================
+   STAR MAP
+   ============================================= */
+.star-map-container {
+  background: radial-gradient(ellipse at center, #0d1b2a 0%, #050d1a 70%, #020810 100%);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  position: relative;
+}
+
+/* =============================================
+   SCROLLBAR
+   ============================================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-pink);
+  border-radius: 3px;
+}
+
+/* =============================================
+   BUCKET LIST CARD
+   ============================================= */
+.bucket-item {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bucket-item.completed {
+  background: linear-gradient(135deg, #D6FFE8, #B5EAD7) !important;
+  border-color: var(--color-mint-deep) !important;
+}
+
+/* =============================================
+   RESPONSIVE UTILITIES
+   ============================================= */
+@media (max-width: 768px) {
+  .btn-sweet {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+}
