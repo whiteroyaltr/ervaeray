@@ -27,7 +27,7 @@ export default function LoveGame() {
   const [, setTick] = useState(0); // Sadece kalpleri çizmek için manuel render tetikleyici
 
   const animationFrameId = useRef<number>(0);
-  const heartSpawnIntervalId = useRef<NodeJS.Timeout>();
+  const heartSpawnIntervalId = useRef<NodeJS.Timeout | null>(null);
 
   const startGame = () => {
     setScore(0);
