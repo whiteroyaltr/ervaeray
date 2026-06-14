@@ -65,7 +65,9 @@ export default function LoveGame() {
     setIsPlaying(false);
     setGameOver(true);
     cancelAnimationFrame(animationFrameId.current);
-    clearInterval(heartSpawnIntervalId.current);
+    if (heartSpawnIntervalId.current) {
+      clearInterval(heartSpawnIntervalId.current);
+    }
   };
 
   const handleLoss = () => {
@@ -138,7 +140,9 @@ export default function LoveGame() {
   useEffect(() => {
     return () => {
       cancelAnimationFrame(animationFrameId.current);
-      clearInterval(heartSpawnIntervalId.current);
+      if (heartSpawnIntervalId.current) {
+        clearInterval(heartSpawnIntervalId.current);
+      }
     };
   }, []);
 
