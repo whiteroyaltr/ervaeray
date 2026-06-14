@@ -29,8 +29,8 @@ interface R2File {
 const FOLDERS = [
   { value: "music", label: "🎵 Müzik", icon: Music, accept: "audio/*", color: "#C8A2C8" },
   { value: "music/covers", label: "🖼️ Müzik Kapakları", icon: Image, accept: "image/*", color: "#FF8FAB" },
-  { value: "photos/landing", label: "📸 Fotoğraflar (Ana)", icon: Image, accept: "image/*,video/*", color: "#FFD580" },
-  { value: "videos", label: "🎬 Videolar", icon: Video, accept: "video/*", color: "#7B9EC8" },
+  { value: "photos/landing", label: "📸 Fotoğraflar (Ana)", icon: Image, accept: "image/*,video/*,video/quicktime,.mov,.mp4", color: "#FFD580" },
+  { value: "videos", label: "🎬 Videolar", icon: Video, accept: "video/*,video/quicktime,.mov,.mp4", color: "#7B9EC8" },
   { value: "gifs/quiz", label: "🎭 Quiz GIF'leri", icon: Film, accept: "image/gif,image/*", color: "#B5EAD7" },
   { value: "photos", label: "🗂️ Diğer Fotoğraflar", icon: Image, accept: "image/*", color: "#FFB347" },
 ] as const;
