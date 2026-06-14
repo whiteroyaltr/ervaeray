@@ -19,8 +19,8 @@ export default function LoveGame() {
   const [hasLost, setHasLost] = useState(false);
 
   // Position state (we don't use React state for animation to avoid re-renders)
-  const charPos = useRef({ x: window.innerWidth / 2, y: window.innerHeight - 100 });
-  const targetPos = useRef({ x: window.innerWidth / 2, y: window.innerHeight - 100 });
+  const charPos = useRef({ x: typeof window !== 'undefined' ? window.innerWidth / 2 : 0, y: typeof window !== 'undefined' ? window.innerHeight - 100 : 0 });
+  const targetPos = useRef({ x: typeof window !== 'undefined' ? window.innerWidth / 2 : 0, y: typeof window !== 'undefined' ? window.innerHeight - 100 : 0 });
   
   const charRef = useRef<HTMLDivElement>(null);
   const heartsRef = useRef<Heart[]>([]);
