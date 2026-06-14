@@ -580,11 +580,6 @@ export default function AdminPage() {
       );
 
       try {
-        const formData = new FormData();
-        formData.append("file", item.file);
-        formData.append("folder", selectedFolder);
-        formData.append("password", password as string);
-
         // Simulate progress while fetching
         const progressInterval = setInterval(() => {
           setQueue((prev) =>
@@ -596,20 +591,43 @@ export default function AdminPage() {
           );
         }, 300);
 
-        const res = await fetch("/api/admin/upload", {
+        // 1. Get Presigned URL
+        const urlRes = await fetch("/api/admin/upload-url", {
           method: "POST",
-          body: formData,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            filename: item.file.name,
+            contentType: item.file.type,
+            folder: selectedFolder,
+            password: password as string,
+          }),
+        });
+        
+        const urlData = await urlRes.json();
+        if (!urlRes.ok) throw new Error(urlData.error || "URL alınamadı");
+
+        // 2. Upload directly to R2
+        const s3Res = await fetch(urlData.uploadUrl, {
+          method: "PUT",
+          body: item.file,
+          headers: {
+            "Content-Type": item.file.type,
+          },
         });
 
         clearInterval(progressInterval);
-        const data = await res.json();
 
-        if (!res.ok) throw new Error(data.error);
+        if (!s3Res.ok) {
+          throw new Error("Dosya yüklenirken sunucu reddetti");
+        }
+
+        // Başarılı
+        const publicUrl = urlData.publicUrl;
 
         setQueue((prev) =>
           prev.map((q) =>
             q.id === item.id
-              ? { ...q, status: "done" as const, progress: 100, publicUrl: data.publicUrl }
+              ? { ...q, status: "done" as const, progress: 100, publicUrl }
               : q
           )
         );
