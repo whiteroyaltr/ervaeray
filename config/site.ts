@@ -12,9 +12,9 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  partnerName: "Erva", // TODO: replace with your partner's name
+  partnerName: "Her şeyden çok sevdiğim aşkıma", // TODO: replace with your partner's name
   yourName: "Eray", // TODO: replace with your name
   anniversaryDate: "2023-06-23", // TODO: replace with your anniversary date
-  heroTitle: "Aşkım, Sana Bir Sürprizim Var 💌",
+  heroTitle: "3.yılımız kutlu olsun sevgilim, seni her şeyden çok seviyorum. Senin için küçük sevimli bir site yaptimmm",
   heroSubtitle: "Her gün seninle geçirmek bir armağan...",
 };

@@ -32,7 +32,7 @@ export const bucketListConfig: BucketListConfig = {
     { id: "picnic", icon: "🧺", title: "Romantik bir piknik yapmak" },
     { id: "movie-marathon", icon: "🎬", title: "Film maraton gecesi" },
     { id: "stargazing", icon: "🔭", title: "Teleskopla yıldız seyretmek" },
-    { id: "pottery", icon: "🏺", title: "Birlikte çömlek yapmak" },
+    { id: "pottery", icon: "🏺", title: "Birlikte yağlama yiyelim(puhahhaha)" },
     { id: "beach", icon: "🏖️", title: "Plajda gün batımını izlemek" },
   ],
 };

@@ -241,7 +241,7 @@ export default function LandingPage() {
               fontWeight: 600,
             }}
           >
-            Sevgili {siteConfig.partnerName}...
+            {siteConfig.partnerName}...
           </span>
         </motion.div>
 
